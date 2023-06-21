@@ -44,11 +44,7 @@ public class SerilogTemplateBuilder
         return this;
     }
 
-    public SerilogTemplateBuilder AddException(int order = 99, bool useSquareBracket = false) {
-        if (useSquareBracket) {
-            _list.Add(new TemplateElement(order, TemplateElementType.Exception, $"[{ExceptionTemplate}]"));
-            return this;
-        }
+    public SerilogTemplateBuilder AddException(int order = 99) {
         _list.Add(new TemplateElement(order, TemplateElementType.Exception, ExceptionTemplate));
         return this;
     }
