@@ -6,8 +6,8 @@ namespace Serilog.ConfigHelper.Enricher;
 
 public class HttpRequestHeaderEnricher : ILogEventEnricher
 {
-    private readonly string _propertyName;
     private readonly string _headerName;
+    private readonly string _propertyName;
 
     public HttpRequestHeaderEnricher(string propertyName, string headerName) {
         _propertyName = propertyName;

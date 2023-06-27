@@ -5,13 +5,14 @@ namespace Serilog.ConfigHelper.Enricher;
 
 public class EnvironmentVariableEnricher : ILogEventEnricher
 {
-    private readonly string _propertyName;
     private readonly string _environmentVariableName;
+    private readonly string _propertyName;
 
-    public EnvironmentVariableEnricher(string propertyName,string environmentVariableName) {
+    public EnvironmentVariableEnricher(string propertyName, string environmentVariableName) {
         _propertyName = propertyName;
         _environmentVariableName = environmentVariableName;
     }
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var environment = Environment.GetEnvironmentVariable(_environmentVariableName);
         var property = propertyFactory.CreateProperty(_propertyName, environment ?? "-");

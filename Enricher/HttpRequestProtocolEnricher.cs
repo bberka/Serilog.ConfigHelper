@@ -8,9 +8,10 @@ public class HttpRequestProtocolEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
 
-    public HttpRequestProtocolEnricher(string propertyName) {
+    public HttpRequestProtocolEnricher(string propertyName = "RequestProtocol") {
         _propertyName = propertyName;
     }
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var protocol = httpContext?.Request?.Protocol;

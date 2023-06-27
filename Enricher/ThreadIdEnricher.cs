@@ -7,9 +7,10 @@ public class ThreadIdEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
 
-    public ThreadIdEnricher(string propertyName) {
+    public ThreadIdEnricher(string propertyName = "ThreadId") {
         _propertyName = propertyName;
     }
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var threadId = Thread.CurrentThread.ManagedThreadId;
         var property = propertyFactory.CreateProperty(_propertyName, threadId);

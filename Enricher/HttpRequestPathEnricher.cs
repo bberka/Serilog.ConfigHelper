@@ -4,14 +4,14 @@ using Serilog.Events;
 
 namespace Serilog.ConfigHelper.Enricher;
 
-
-internal class RequestPathEnricher : ILogEventEnricher
+public class HttpRequestPathEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
 
-    public RequestPathEnricher(string propertyName) {
+    public HttpRequestPathEnricher(string propertyName = "RequestPath") {
         _propertyName = propertyName;
     }
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var uriPath = httpContext?.Request?.Path.Value;
@@ -19,4 +19,3 @@ internal class RequestPathEnricher : ILogEventEnricher
         logEvent.AddOrUpdateProperty(property);
     }
 }
-

@@ -9,7 +9,7 @@ public class RoleEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
 
-    public RoleEnricher(string propertyName,bool isGetSingleRole = false) {
+    public RoleEnricher(string propertyName = "Role", bool isGetSingleRole = false) {
         _propertyName = propertyName;
     }
 

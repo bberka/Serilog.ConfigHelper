@@ -1,3 +1,3 @@
 ﻿namespace Serilog.ConfigHelper.Internal;
 
-internal record TemplateElement(int Order, TemplateElementType Type,string Template);
+internal record TemplateElement(int Order, TemplateElementType Type, string Template);

@@ -7,27 +7,29 @@ namespace Serilog.ConfigHelper.Enricher;
 public class MachineGuidEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
+    private static string _machineGuid;
 
-    public MachineGuidEnricher(string propertyName) {
+    public MachineGuidEnricher(string propertyName = "MachineGuid") {
         _propertyName = propertyName;
+        if(string.IsNullOrEmpty(_machineGuid))
+            _machineGuid = GetMachineGuid();
     }
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
-        var machineGuid = GetMachineGuid();
-        var property = propertyFactory.CreateProperty(_propertyName, machineGuid);
+        var property = propertyFactory.CreateProperty(_propertyName, _machineGuid);
         logEvent.AddOrUpdateProperty(property);
     }
 
     private string GetMachineGuid() {
         var location = @"SOFTWARE\Microsoft\Cryptography";
         var name = "MachineGuid";
-
         using var localMachineX64View = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
         using var rk = localMachineX64View.OpenSubKey(location);
         if (rk == null) return "-";
-            // throw new KeyNotFoundException("Cannot find the key: " + location);
+        // throw new KeyNotFoundException("Cannot find the key: " + location);
         var machineGuid = rk.GetValue(name);
         if (machineGuid == null) return "-";
-            // throw new IndexOutOfRangeException("Cannot find the value: " + name);
+        // throw new IndexOutOfRangeException("Cannot find the value: " + name);
         return machineGuid.ToString()?.ToUpper();
     }
 }

@@ -8,9 +8,10 @@ public class HttpRequestSchemeEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
 
-    public HttpRequestSchemeEnricher(string propertyName) {
+    public HttpRequestSchemeEnricher(string propertyName = "RequestScheme") {
         _propertyName = propertyName;
     }
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var scheme = httpContext?.Request?.Scheme;
