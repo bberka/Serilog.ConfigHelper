@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyVersion>1.3.0</AssemblyVersion>
-        <FileVersion></FileVersion>
+        <FileVersion>1.3.0</FileVersion>
         <LangVersion>10</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Version>1.3.0</Version>
@@ -14,9 +14,8 @@
         <Description>Provides various built-in enrichers for Serilog and a TemplateBuilder to help you build Serilog templates easily.</Description>
         <PackageProjectUrl>https://github.com/bberka/Serilog.ConfigHelper</PackageProjectUrl>
         <RepositoryUrl>https://github.com/bberka/Serilog.ConfigHelper</RepositoryUrl>
-        <PackageLicenseUrl>https://github.com/bberka/Serilog.ConfigHelper/blob/master/LICENSE</PackageLicenseUrl>
-        <Copyright>https://github.com/bberka/Serilog.ConfigHelper/blob/master/LICENSE</Copyright>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/bberka/Serilog.ConfigHelper/master/LICENSE.txt</PackageLicenseUrl>
+        <Copyright>https://raw.githubusercontent.com/bberka/Serilog.ConfigHelper/master/LICENSE.txt</Copyright>
     </PropertyGroup>
 
     <ItemGroup>
