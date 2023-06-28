@@ -30,7 +30,7 @@ public class MacAddressEnricher : ILogEventEnricher
                 .Where(nic => nic.OperationalStatus == OperationalStatus.Up && nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
                 .ToArray();
         var macAddressList = networks.Select(network => network.GetPhysicalAddress().ToString()).Where(macAddress => !string.IsNullOrEmpty(macAddress)).ToList();
-        if (_isGetSingle) return macAddressList.FirstOrDefault();
+        if (_isGetSingle) return macAddressList.FirstOrDefault() ?? string.Empty;
         return string.Join(",", macAddressList);
     }
 }

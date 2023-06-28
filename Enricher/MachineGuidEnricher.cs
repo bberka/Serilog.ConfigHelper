@@ -7,12 +7,11 @@ namespace Serilog.ConfigHelper.Enricher;
 public class MachineGuidEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
-    private static string _machineGuid;
+    private static string? _machineGuid;
 
     public MachineGuidEnricher(string propertyName = "MachineGuid") {
         _propertyName = propertyName;
-        if(string.IsNullOrEmpty(_machineGuid))
-            _machineGuid = GetMachineGuid();
+        _machineGuid??= GetMachineGuid();
     }
 
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
@@ -30,6 +29,6 @@ public class MachineGuidEnricher : ILogEventEnricher
         var machineGuid = rk.GetValue(name);
         if (machineGuid == null) return "-";
         // throw new IndexOutOfRangeException("Cannot find the value: " + name);
-        return machineGuid.ToString()?.ToUpper();
+        return machineGuid.ToString()?.ToUpper() ?? string.Empty;
     }
 }
