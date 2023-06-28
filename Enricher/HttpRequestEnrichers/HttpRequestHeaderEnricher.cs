@@ -2,7 +2,7 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Serilog.ConfigHelper.Enricher;
+namespace Serilog.ConfigHelper.Enricher.HttpRequestEnrichers;
 
 public class HttpRequestHeaderEnricher : ILogEventEnricher
 {
@@ -17,6 +17,7 @@ public class HttpRequestHeaderEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var header = httpContext?.Request?.Headers[_headerName];
+        if(!header.HasValue) return;
         var property = propertyFactory.CreateProperty(_propertyName, header ?? "-");
         logEvent.AddOrUpdateProperty(property);
     }

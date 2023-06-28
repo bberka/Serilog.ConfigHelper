@@ -4,9 +4,16 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AssemblyVersion>1.1.0</AssemblyVersion>
+        <AssemblyVersion>1.2.0</AssemblyVersion>
         <FileVersion></FileVersion>
         <LangVersion>10</LangVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.2.0</Version>
+        <Title>Serilog.ConfigHelper</Title>
+        <Authors>bberka</Authors>
+        <Description>Provides various built-in enrichers for Serilog and a TemplateBuilder to help you build Serilog templates easily.</Description>
+        <PackageProjectUrl>https://github.com/bberka/Serilog.ConfigHelper</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/bberka/Serilog.ConfigHelper</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>

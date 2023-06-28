@@ -6,5 +6,6 @@ internal enum TemplateElementType
     Level,
     Message,
     Exception,
-    Property
+    Property,
+    NewLine
 }

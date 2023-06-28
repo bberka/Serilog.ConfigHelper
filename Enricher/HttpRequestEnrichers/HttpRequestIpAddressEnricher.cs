@@ -2,7 +2,7 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Serilog.ConfigHelper.Enricher;
+namespace Serilog.ConfigHelper.Enricher.HttpRequestEnrichers;
 
 public class HttpRequestIpAddressEnricher : ILogEventEnricher
 {
@@ -22,8 +22,7 @@ public class HttpRequestIpAddressEnricher : ILogEventEnricher
             var realIp = httpContext?.Request?.Headers[_realIpHeader].ToString();
             if (!string.IsNullOrEmpty(realIp)) remoteIpAddress = realIp;
         }
-
-        if (string.IsNullOrEmpty(remoteIpAddress)) remoteIpAddress = "-";
+        if (string.IsNullOrEmpty(remoteIpAddress)) return;
         var property = propertyFactory.CreateProperty(_propertyName, remoteIpAddress);
         logEvent.AddOrUpdateProperty(property);
     }

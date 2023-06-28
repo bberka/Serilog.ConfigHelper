@@ -71,6 +71,11 @@ public class SerilogTemplateBuilder
         return this;
     }
 
+    public SerilogTemplateBuilder AddNewLine() {
+        var order = LastElementOrderNumber() + 1;
+        _list.Add(new TemplateElement(order, TemplateElementType.NewLine, Environment.NewLine));
+        return this;
+    }
     public string Build() {
         var template = string.Join(" ", _list.OrderBy(x => x.Order).Select(x => x.Template));
         return template;

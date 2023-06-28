@@ -2,20 +2,21 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Serilog.ConfigHelper.Enricher;
+namespace Serilog.ConfigHelper.Enricher.HttpRequestEnrichers;
 
-public class HttpRequestMethodEnricher : ILogEventEnricher
+public class HttpRequestStatusCodeEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
 
-    public HttpRequestMethodEnricher(string propertyName = "RequestMethod") {
+    public HttpRequestStatusCodeEnricher(string propertyName = "StatusCode") {
         _propertyName = propertyName;
     }
-
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
-        var method = httpContext?.Request?.Method;
-        var property = propertyFactory.CreateProperty(_propertyName, method ?? "-");
+        var scheme = httpContext?.Request?.Scheme;
+        if(scheme == null) return;
+        var property = propertyFactory.CreateProperty(_propertyName, scheme);
         logEvent.AddOrUpdateProperty(property);
     }
+
 }

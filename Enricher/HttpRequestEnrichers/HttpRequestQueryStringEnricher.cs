@@ -2,7 +2,7 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Serilog.ConfigHelper.Enricher;
+namespace Serilog.ConfigHelper.Enricher.HttpRequestEnrichers;
 
 public class HttpRequestQueryStringEnricher : ILogEventEnricher
 {
@@ -15,8 +15,8 @@ public class HttpRequestQueryStringEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var queryString = httpContext?.Request?.QueryString;
-        var queryStringValue = queryString.HasValue ? queryString.Value.ToString() : "-";
-        var property = propertyFactory.CreateProperty(_propertyName, queryStringValue);
+        if(!queryString.HasValue) return;
+        var property = propertyFactory.CreateProperty(_propertyName, queryString.Value);
         logEvent.AddOrUpdateProperty(property);
     }
 }

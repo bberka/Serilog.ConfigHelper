@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Http;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Serilog.ConfigHelper.Enricher;
+namespace Serilog.ConfigHelper.Enricher.HttpRequestEnrichers;
 
 /// <summary>
 /// Enriches Serilog messages with the all header values in current HttpRequest.
 /// </summary>
-public class HttpRequestAllHeaderEnricher : ILogEventEnricher
+public class HttpRequestAllHeadersEnricher : ILogEventEnricher
 {
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var context = new HttpContextAccessor().HttpContext;
