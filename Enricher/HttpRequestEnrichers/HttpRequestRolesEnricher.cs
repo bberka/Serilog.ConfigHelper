@@ -16,8 +16,8 @@ public class HttpRequestRolesEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var roleClaim = httpContext?.User?.Claims?.Where(x => x.Type == ClaimTypes.Role).ToList();
-        if(roleClaim == null) return;
-        if(roleClaim.Count == 0) return;
+        if (roleClaim == null) return;
+        if (roleClaim.Count == 0) return;
         var rolesString = string.Join(",", roleClaim.Select(x => x.Value));
         var property = propertyFactory.CreateProperty(_propertyName, rolesString);
         logEvent.AddOrUpdateProperty(property);

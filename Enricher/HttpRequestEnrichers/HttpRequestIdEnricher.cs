@@ -15,7 +15,7 @@ public class HttpRequestIdEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var requestId = httpContext?.Connection?.Id;
-        if(requestId == null) return;
+        if (requestId == null) return;
         var property = propertyFactory.CreateProperty(_propertyName, requestId);
         logEvent.AddOrUpdateProperty(property);
     }

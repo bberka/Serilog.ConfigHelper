@@ -11,12 +11,12 @@ public class HttpRequestStatusCodeEnricher : ILogEventEnricher
     public HttpRequestStatusCodeEnricher(string propertyName = "StatusCode") {
         _propertyName = propertyName;
     }
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var scheme = httpContext?.Request?.Scheme;
-        if(scheme == null) return;
+        if (scheme == null) return;
         var property = propertyFactory.CreateProperty(_propertyName, scheme);
         logEvent.AddOrUpdateProperty(property);
     }
-
 }

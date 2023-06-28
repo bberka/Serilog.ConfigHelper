@@ -10,8 +10,8 @@ public class OSVersionEnricher : ILogEventEnricher
     public OSVersionEnricher(string propertyName = "OSVersion") {
         _propertyName = propertyName;
     }
-        
-    
+
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var osVersion = Environment.OSVersion.ToString();
         var property = propertyFactory.CreateProperty(_propertyName, osVersion);

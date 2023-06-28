@@ -9,7 +9,7 @@ public class HttpRequestIpAddressEnricher : ILogEventEnricher
     private readonly string _propertyName;
     private readonly string _realIpHeader;
 
-  
+
     public HttpRequestIpAddressEnricher(string realIpHeader, string propertyName = "IpAddress") {
         _propertyName = propertyName;
         _realIpHeader = realIpHeader;
@@ -22,6 +22,7 @@ public class HttpRequestIpAddressEnricher : ILogEventEnricher
             var realIp = httpContext?.Request?.Headers[_realIpHeader].ToString();
             if (!string.IsNullOrEmpty(realIp)) remoteIpAddress = realIp;
         }
+
         if (string.IsNullOrEmpty(remoteIpAddress)) return;
         var property = propertyFactory.CreateProperty(_propertyName, remoteIpAddress);
         logEvent.AddOrUpdateProperty(property);

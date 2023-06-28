@@ -4,7 +4,6 @@ using Serilog.Events;
 
 namespace Serilog.ConfigHelper.Enricher.HttpRequestEnrichers;
 
-
 public class HttpRequestTraceIdentifiedEnricher : ILogEventEnricher
 {
     private readonly string _propertyName;
@@ -16,7 +15,7 @@ public class HttpRequestTraceIdentifiedEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var traceId = httpContext?.TraceIdentifier;
-        if(traceId == null) return;
+        if (traceId == null) return;
         var property = propertyFactory.CreateProperty(_propertyName, traceId);
         logEvent.AddOrUpdateProperty(property);
     }

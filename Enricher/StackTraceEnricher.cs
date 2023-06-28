@@ -7,8 +7,8 @@ namespace Serilog.ConfigHelper.Enricher;
 
 public class StackTraceEnricher : ILogEventEnricher
 {
-    private readonly bool _includeNameSpace;
     private readonly bool _includeFileName;
+    private readonly bool _includeNameSpace;
     private readonly string _propertyName;
 
     public StackTraceEnricher(bool includeNameSpace = false, bool includeFileName = true, string propertyName = "StackTrace") {
@@ -36,13 +36,16 @@ public class StackTraceEnricher : ILogEventEnricher
                 var fileName = Path.GetFileName(declaringType.Assembly.Location);
                 strBase = $"{fileName}.{strBase}";
             }
+
             if (_includeNameSpace) {
                 var nameSpaceName = declaringType.Namespace ?? string.Empty;
                 strBase = $"{nameSpaceName}.{strBase}";
             }
+
             stringBuilder.Append(strBase);
             stringBuilder.Append(" -> ");
         }
+
         var removeLast = stringBuilder.ToString().LastIndexOf(" -> ", StringComparison.Ordinal);
         stringBuilder.Remove(removeLast, 4);
         return stringBuilder.ToString().Trim();

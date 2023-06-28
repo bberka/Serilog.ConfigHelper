@@ -15,7 +15,7 @@ public class HttpRequestPathEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var uriPath = httpContext?.Request?.Path.Value;
-        if(uriPath == null) return;
+        if (uriPath == null) return;
         var property = propertyFactory.CreateProperty(_propertyName, uriPath ?? "-");
         logEvent.AddOrUpdateProperty(property);
     }

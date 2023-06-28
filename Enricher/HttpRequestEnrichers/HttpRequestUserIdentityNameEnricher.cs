@@ -15,7 +15,7 @@ public class HttpRequestUserIdentityNameEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var userName = httpContext?.User?.Identity?.Name;
-        if(userName == null) return;
+        if (userName == null) return;
         var property = propertyFactory.CreateProperty(_propertyName, userName);
         logEvent.AddOrUpdateProperty(property);
     }

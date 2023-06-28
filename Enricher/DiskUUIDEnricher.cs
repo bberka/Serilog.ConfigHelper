@@ -6,17 +6,19 @@ namespace Serilog.ConfigHelper.Enricher;
 
 public class DiskUUIDEnricher : ILogEventEnricher
 {
-    private readonly string _propertyName;
     private static string? _diskUUID;
+    private readonly string _propertyName;
 
     public DiskUUIDEnricher(string propertyName = "DiskUUID") {
         _propertyName = propertyName;
         _diskUUID ??= GetDiskUUID();
     }
+
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var property = propertyFactory.CreateProperty(_propertyName, _diskUUID);
         logEvent.AddOrUpdateProperty(property);
     }
+
     private static string GetDiskUUID() {
         const string run = "get-wmiobject Win32_ComputerSystemProduct  | Select-Object -ExpandProperty UUID";
         var oProcess = new Process();
@@ -29,6 +31,6 @@ public class DiskUUIDEnricher : ILogEventEnricher
         oProcess.Start();
         oProcess.WaitForExit();
         var result = oProcess.StandardOutput.ReadToEnd();
-        return result.Replace(" ","").ReplaceLineEndings("");
+        return result.Replace(" ", "").ReplaceLineEndings("");
     }
 }

@@ -15,7 +15,7 @@ public class HttpRequestProtocolEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var protocol = httpContext?.Request?.Protocol;
-        if(protocol == null) return;
+        if (protocol == null) return;
         var property = propertyFactory.CreateProperty(_propertyName, protocol ?? "-");
         logEvent.AddOrUpdateProperty(property);
     }

@@ -9,7 +9,6 @@ public class MachineNameEnricher : ILogEventEnricher
 
     public MachineNameEnricher(string propertyName = "MachineName") {
         _propertyName = propertyName;
-        
     }
 
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {

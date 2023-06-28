@@ -15,7 +15,7 @@ public class HttpRequestMethodEnricher : ILogEventEnricher
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var httpContext = new HttpContextAccessor().HttpContext;
         var method = httpContext?.Request?.Method;
-        if(method == null) return;
+        if (method == null) return;
         var property = propertyFactory.CreateProperty(_propertyName, method);
         logEvent.AddOrUpdateProperty(property);
     }

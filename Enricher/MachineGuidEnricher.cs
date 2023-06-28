@@ -6,12 +6,12 @@ namespace Serilog.ConfigHelper.Enricher;
 
 public class MachineGuidEnricher : ILogEventEnricher
 {
-    private readonly string _propertyName;
     private static string? _machineGuid;
+    private readonly string _propertyName;
 
     public MachineGuidEnricher(string propertyName = "MachineGuid") {
         _propertyName = propertyName;
-        _machineGuid??= GetMachineGuid();
+        _machineGuid ??= GetMachineGuid();
     }
 
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {

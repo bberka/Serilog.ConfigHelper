@@ -15,7 +15,7 @@ public class EnvironmentVariableEnricher : ILogEventEnricher
 
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
         var environment = Environment.GetEnvironmentVariable(_environmentVariableName);
-        if(environment == null) return;
+        if (environment == null) return;
         var property = propertyFactory.CreateProperty(_propertyName, environment);
         logEvent.AddOrUpdateProperty(property);
     }
