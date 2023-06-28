@@ -14,15 +14,16 @@
         <Description>Provides various built-in enrichers for Serilog and a TemplateBuilder to help you build Serilog templates easily.</Description>
         <PackageProjectUrl>https://github.com/bberka/Serilog.ConfigHelper</PackageProjectUrl>
         <RepositoryUrl>https://github.com/bberka/Serilog.ConfigHelper</RepositoryUrl>
+        <PackageLicenseUrl>https://github.com/bberka/Serilog.ConfigHelper/blob/master/LICENSE</PackageLicenseUrl>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
-        <PackageReference Include="Serilog" Version="3.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+        <PackageReference Include="Serilog" Version="3.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove=".gitignore"/>
+        <None Remove=".gitignore" />
     </ItemGroup>
 
 </Project>
