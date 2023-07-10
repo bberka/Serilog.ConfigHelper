@@ -15,7 +15,7 @@ public class HttpRequestClaimEnricher : ILogEventEnricher
     }
 
     public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory) {
-        var claim = new HttpContextAccessor().HttpContext.User.Claims.FirstOrDefault(x => x.Type == _claimType);
+        var claim = new HttpContextAccessor().HttpContext?.User?.Claims?.FirstOrDefault(x => x.Type == _claimType);
         if (claim == null) return;
         var claimProperty = new LogEventProperty(_propertyName, new ScalarValue(claim.Value));
         logEvent.AddOrUpdateProperty(claimProperty);
