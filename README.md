@@ -1,3 +1,7 @@
+
+# THIS LIBRARY MOVED TO https://github.com/bberka/Serilog.Plus
+This library has been made obsolete and not recommended for use 
+
 # Serilog.ConfigHelper Library
 
 Provides various built-in enrichers for Serilog and a TemplateBuilder to help you build Serilog templates easily.
